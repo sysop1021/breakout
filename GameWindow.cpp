@@ -5,7 +5,7 @@ GameWindow::GameWindow()
     window.create({200, 200, 32}, "SFML Works!", sf::Style::Default);
 
     shape.setRadius(100.f);
-    shape.setFillColor(sf::Color::Cyan)
+    shape.setFillColor(sf::Color::Cyan);
 }
 
 GameWindow::~GameWindow()
