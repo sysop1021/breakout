@@ -1,3 +1,11 @@
+# linux makefile
+makefile
+
+# CodeBlocks files
+*.layout
+*.cbp
+*.depend
+
 # Prerequisites
 *.d
 
