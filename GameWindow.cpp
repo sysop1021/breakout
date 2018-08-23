@@ -2,15 +2,24 @@
 
 GameWindow::GameWindow()
 {
-    window.create({200, 200, 32}, "SFML Works!", sf::Style::Default);
-
-    shape.setRadius(100.f);
-    shape.setFillColor(sf::Color::Cyan);
+    window.create({600, 800, 32}, "SFML Works!", sf::Style::Default);
 }
 
 GameWindow::~GameWindow()
 {
 
+}
+
+GameWindow::RunWindow()
+{
+    this->InitStuff();
+    this->GameLoop();
+}
+
+GameWindow::InitStuff()
+{
+    shape.setRadius(100.f);
+    shape.setFillColor(sf::Color::Cyan);
 }
 
 GameWindow::GameLoop()
@@ -23,7 +32,7 @@ GameWindow::GameLoop()
                 window.close();
         }
 
-        window.clear();
+        window.clear(sf::Color::White);
         window.draw(shape);
         window.display();
     }

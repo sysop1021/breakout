@@ -7,7 +7,9 @@ class GameWindow
         GameWindow();
         ~GameWindow();
 
+        InitStuff();
         GameLoop();
+        RunWindow();
 
     private:
         sf::RenderWindow window;

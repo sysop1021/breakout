@@ -3,7 +3,8 @@
 int main()
 {
     GameWindow myWindow;
-    myWindow.GameLoop();
+
+    myWindow.RunWindow();
 
     return 0;
 }
