@@ -2,7 +2,7 @@
 
 GameWindow::GameWindow()
 {
-    window.create({600, 800, 32}, "SFML Works!", sf::Style::Default);
+    window.create({600, 800, 32}, "SUPER Breakout!", sf::Style::Default);
 }
 
 GameWindow::~GameWindow()
@@ -32,8 +32,28 @@ GameWindow::GameLoop()
                 window.close();
         }
 
-        window.clear(sf::Color::White);
-        window.draw(shape);
-        window.display();
+        this->RenderScene();
     }
+}
+
+GameWindow::RenderScene()
+{
+    this->BeginDraw();
+    this->Draw();
+    this->EndDraw();
+}
+
+GameWindow::Draw()
+{
+    window.draw(shape);
+}
+
+GameWindow::BeginDraw()
+{
+    window.clear(sf::Color::White);
+}
+
+GameWindow::EndDraw()
+{
+    window.display();
 }
