@@ -10,19 +10,21 @@ GameWindow::~GameWindow()
 
 }
 
-GameWindow::RunWindow()
+void GameWindow::RunWindow()
 {
     this->InitStuff();
     this->GameLoop();
 }
 
-GameWindow::InitStuff()
+void GameWindow::InitStuff()
 {
-    shape.setRadius(100.f);
+    shape.setRadius(50.f);
     shape.setFillColor(sf::Color::Cyan);
+    shape.setOrigin(50.f, 50.f);
+    shape.setPosition(300, 600);
 }
 
-GameWindow::GameLoop()
+void GameWindow::GameLoop()
 {
     while (window.isOpen())
     {
@@ -36,24 +38,24 @@ GameWindow::GameLoop()
     }
 }
 
-GameWindow::RenderScene()
+void GameWindow::RenderScene()
 {
     this->BeginDraw();
     this->Draw();
     this->EndDraw();
 }
 
-GameWindow::Draw()
+void GameWindow::Draw()
 {
     window.draw(shape);
 }
 
-GameWindow::BeginDraw()
+void GameWindow::BeginDraw()
 {
     window.clear(sf::Color::White);
 }
 
-GameWindow::EndDraw()
+void GameWindow::EndDraw()
 {
     window.display();
 }

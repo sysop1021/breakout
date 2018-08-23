@@ -9,14 +9,14 @@ class GameWindow
         GameWindow();
         ~GameWindow();
 
-        InitStuff();
-        GameLoop();
-        RunWindow();
+        void InitStuff();
+        void GameLoop();
+        void RunWindow();
 
-        RenderScene();
-        BeginDraw();
-        Draw();
-        EndDraw();
+        void RenderScene();
+        void BeginDraw();
+        void Draw();
+        void EndDraw();
 
     private:
         sf::RenderWindow window;
