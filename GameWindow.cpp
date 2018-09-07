@@ -1,13 +1,5 @@
 #include "GameWindow.hpp"
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 800
-#define WINDOW_BITS 32
-
-#define X_SPEED 3.0
-#define Y_SPEED 3.0
-#define RADIUS 50.0f
-
 GameWindow::GameWindow()
 {
     window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "SUPER Breakout!", sf::Style::Default);
