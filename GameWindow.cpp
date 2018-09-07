@@ -22,6 +22,9 @@ void GameWindow::InitStuff()
     shape.setFillColor(sf::Color::Cyan);
     shape.setOrigin(50.f, 50.f);
     shape.setPosition(300, 600);
+
+    speed.x = 3.0;
+    speed.y = 3.0;
 }
 
 void GameWindow::GameLoop()
@@ -35,6 +38,17 @@ void GameWindow::GameLoop()
         }
 
         this->RenderScene();
+        shape.move(speed);
+
+        if (shape.getPosition().x + 50.f >= 600 || shape.getPosition().x - 50.f <= 0) // hor col
+        {
+            speed.x *= -1;
+        }
+
+        if (shape.getPosition().y + 50.f >= 800 || shape.getPosition().y - 50.f <= 0) // vert col
+        {
+            speed.y *= -1;
+        }
     }
 }
 

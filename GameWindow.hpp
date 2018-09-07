@@ -23,6 +23,7 @@ class GameWindow
         sf::CircleShape shape;
 
         sf::Event event;
+        sf::Vector2f speed;
 };
 
 #endif
