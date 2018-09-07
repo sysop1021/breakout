@@ -18,13 +18,28 @@ void GameWindow::RunWindow()
 
 void GameWindow::InitStuff()
 {
-    shape.setRadius(RADIUS);
-    shape.setFillColor(sf::Color::Cyan);
-    shape.setOrigin(RADIUS, RADIUS);
-    shape.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+    ball.setRadius(RADIUS);
+    ball.setFillColor(sf::Color::Cyan);
+    ball.setOrigin(RADIUS, RADIUS);
+    ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
     speed.x = X_SPEED;
     speed.y = Y_SPEED;
+
+    brickSize.x = (WINDOW_WIDTH / COLS);
+    brickSize.y = (20.f);
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            bricks[i][j].setSize(brickSize);
+            bricks[i][j].setFillColor(sf::Color::Red);
+            bricks[i][j].setOutlineColor(sf::Color::White);
+            bricks[i][j].setOutlineThickness(3.0f);
+            bricks[i][j].setPosition(j * brickSize.x, i * brickSize.y); // TODO: hot mess
+        }
+    }
 }
 
 void GameWindow::GameLoop()
@@ -38,14 +53,14 @@ void GameWindow::GameLoop()
         }
 
         this->RenderScene();
-        shape.move(speed);
+        ball.move(speed);
 
-        if (shape.getPosition().x + RADIUS >= WINDOW_WIDTH || shape.getPosition().x - RADIUS <= 0) // hor col
+        if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0) // hor col
         {
             speed.x *= -1;
         }
 
-        if (shape.getPosition().y + RADIUS >= WINDOW_HEIGHT || shape.getPosition().y - RADIUS <= 0) // vert col
+        if (ball.getPosition().y + RADIUS >= WINDOW_HEIGHT || ball.getPosition().y - RADIUS <= 0) // vert col
         {
             speed.y *= -1;
         }
@@ -61,7 +76,15 @@ void GameWindow::RenderScene()
 
 void GameWindow::Draw()
 {
-    window.draw(shape);
+    window.draw(ball);
+
+    for (int i = 0; i < ROWS; i++)
+    {
+        for (int j = 0; j < COLS; j++)
+        {
+            window.draw(bricks[i][j]);
+        }
+    }
 }
 
 void GameWindow::BeginDraw()

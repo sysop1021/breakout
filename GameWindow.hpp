@@ -7,7 +7,10 @@
 
 #define X_SPEED 3.0
 #define Y_SPEED 3.0
-#define RADIUS 50.0f
+#define RADIUS 10.0f
+
+#define COLS 10
+#define ROWS 5
 
 #include <SFML/Graphics.hpp>
 
@@ -28,10 +31,12 @@ class GameWindow
 
     private:
         sf::RenderWindow window;
-        sf::CircleShape shape;
+        sf::CircleShape ball;
+        sf::RectangleShape bricks[COLS][ROWS];
 
         sf::Event event;
         sf::Vector2f speed;
+        sf::Vector2f brickSize;
 };
 
 #endif
