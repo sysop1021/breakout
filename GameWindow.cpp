@@ -29,9 +29,9 @@ void GameWindow::InitStuff()
     brickSize.x = (WINDOW_WIDTH / COLS);
     brickSize.y = (20.f);
 
-    for (int i = 0; i < ROWS; i++)
+    for (int i = 0; i < COLS; i++)
     {
-        for (int j = 0; j < COLS; j++)
+        for (int j = 0; j < ROWS; j++)
         {
             bricks[i][j].setSize(brickSize);
             bricks[i][j].setFillColor(sf::Color::Red);
@@ -78,9 +78,9 @@ void GameWindow::Draw()
 {
     window.draw(ball);
 
-    for (int i = 0; i < ROWS; i++)
+    for (int i = 0; i < COLS; i++)
     {
-        for (int j = 0; j < COLS; j++)
+        for (int j = 0; j < ROWS; j++)
         {
             window.draw(bricks[i][j]);
         }
