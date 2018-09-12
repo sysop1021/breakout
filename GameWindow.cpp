@@ -42,8 +42,8 @@ void GameWindow::InitBricks()
             bricks[i][j].setSize(brickSize);
             bricks[i][j].setFillColor(sf::Color::Red);
             bricks[i][j].setOutlineColor(sf::Color::White);
-            bricks[i][j].setOutlineThickness(3.0f);
-            bricks[i][j].setPosition((j * brickSize.x), (i * brickSize.y));
+            bricks[i][j].setOutlineThickness(3.f);
+            bricks[i][j].setPosition((j * brickSize.x), ((i * brickSize.y) + 3.f));
         }
     }
 }
@@ -96,6 +96,8 @@ void GameWindow::GameLoop()
         {
             speed.y *= -1;
         }
+
+        //TODO: implement ball collision with bricks
     }
 }
 
