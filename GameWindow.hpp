@@ -35,7 +35,7 @@ class GameWindow
     private:
         sf::RenderWindow window;
         sf::CircleShape ball;
-        sf::RectangleShape bricks[COLS][ROWS];
+        sf::RectangleShape bricks[ROWS][COLS];
         sf::RectangleShape paddle;
 
         sf::Event event;

@@ -29,11 +29,6 @@ void GameWindow::InitBall()
     speed.y = Y_SPEED;
 }
 
-/**
-    TODO: This works when ROWS and COLS are the exact same number,
-    but does some weird shit when they are different!?
-*/
-
 void GameWindow::InitBricks()
 {
     sf::Vector2f brickSize;
@@ -46,30 +41,6 @@ void GameWindow::InitBricks()
         {
             bricks[i][j].setSize(brickSize);
             bricks[i][j].setFillColor(sf::Color::Red);
-            //TODO: for debugging purposes. I still have no idea what is going wrong
-            /*switch(i)
-            {
-            case 0:
-                bricks[i][j].setFillColor(sf::Color::Red);
-                break;
-
-            case 1:
-                bricks[i][j].setFillColor(sf::Color::Yellow);
-                break;
-
-            case 2:
-                bricks[i][j].setFillColor(sf::Color::Green);
-                break;
-
-            case 3:
-                bricks[i][j].setFillColor(sf::Color::Blue);
-                break;
-
-            case 4:
-                bricks[i][j].setFillColor(sf::Color::Magenta);
-                break;
-            }*/
-
             bricks[i][j].setOutlineColor(sf::Color::White);
             bricks[i][j].setOutlineThickness(3.0f);
             bricks[i][j].setPosition((j * brickSize.x), (i * brickSize.y));
