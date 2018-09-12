@@ -12,11 +12,13 @@ GameWindow::~GameWindow()
 
 void GameWindow::RunWindow()
 {
-    this->InitStuff();
+    this->InitBall();
+    this->InitBricks();
+    this->InitPaddle();
     this->GameLoop();
 }
 
-void GameWindow::InitStuff()
+void GameWindow::InitBall()
 {
     ball.setRadius(RADIUS);
     ball.setFillColor(sf::Color::Cyan);
@@ -25,21 +27,35 @@ void GameWindow::InitStuff()
 
     speed.x = X_SPEED;
     speed.y = Y_SPEED;
+}
 
+void GameWindow::InitBricks() // TODO: hot mess
+{
+    sf::Vector2f brickSize;
     brickSize.x = (WINDOW_WIDTH / COLS);
     brickSize.y = (20.f);
 
-    for (int i = 0; i < COLS; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < ROWS; j++)
+        for (int j = 0; j < COLS; j++)
         {
             bricks[i][j].setSize(brickSize);
             bricks[i][j].setFillColor(sf::Color::Red);
             bricks[i][j].setOutlineColor(sf::Color::White);
             bricks[i][j].setOutlineThickness(3.0f);
-            bricks[i][j].setPosition(j * brickSize.x, i * brickSize.y); // TODO: hot mess
+            bricks[i][j].setPosition((j * brickSize.x), (i * brickSize.y));
         }
     }
+}
+
+void GameWindow::InitPaddle()
+{
+    sf::Vector2f paddleSize(80.f, 20.f);
+
+    paddle.setSize(paddleSize);
+    paddle.setFillColor(sf::Color::Blue);
+    paddle.setOrigin(30.f, 10.f);
+    paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
 }
 
 void GameWindow::GameLoop()
@@ -49,11 +65,19 @@ void GameWindow::GameLoop()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
                 window.close();
+            }
+
+            if (event.type == sf::Event::MouseMoved)
+            {
+                paddlePosX = sf::Mouse::getPosition(window).x;
+            }
         }
 
         this->RenderScene();
         ball.move(speed);
+        paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
 
         if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0) // hor col
         {
@@ -77,10 +101,11 @@ void GameWindow::RenderScene()
 void GameWindow::Draw()
 {
     window.draw(ball);
+    window.draw(paddle);
 
-    for (int i = 0; i < COLS; i++)
+    for (int i = 0; i < ROWS; i++)
     {
-        for (int j = 0; j < ROWS; j++)
+        for (int j = 0; j < COLS; j++)
         {
             window.draw(bricks[i][j]);
         }

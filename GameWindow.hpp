@@ -20,7 +20,10 @@ class GameWindow
         GameWindow();
         ~GameWindow();
 
-        void InitStuff();
+        void InitBall();
+        void InitBricks();
+        void InitPaddle();
+
         void GameLoop();
         void RunWindow();
 
@@ -33,10 +36,12 @@ class GameWindow
         sf::RenderWindow window;
         sf::CircleShape ball;
         sf::RectangleShape bricks[COLS][ROWS];
+        sf::RectangleShape paddle;
 
         sf::Event event;
         sf::Vector2f speed;
-        sf::Vector2f brickSize;
+
+        int paddlePosX = WINDOW_WIDTH / 2;
 };
 
 #endif
