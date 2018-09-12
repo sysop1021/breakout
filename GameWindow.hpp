@@ -9,8 +9,8 @@
 #define Y_SPEED 3.0
 #define RADIUS 10.0f
 
-#define COLS 10
-#define ROWS 5
+#define COLS 8
+#define ROWS 8
 
 #include <SFML/Graphics.hpp>
 

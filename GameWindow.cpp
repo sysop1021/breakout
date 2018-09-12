@@ -29,7 +29,12 @@ void GameWindow::InitBall()
     speed.y = Y_SPEED;
 }
 
-void GameWindow::InitBricks() // TODO: hot mess
+/**
+    TODO: This works when ROWS and COLS are the exact same number,
+    but does some weird shit when they are different!?
+*/
+
+void GameWindow::InitBricks()
 {
     sf::Vector2f brickSize;
     brickSize.x = (WINDOW_WIDTH / COLS);
@@ -79,12 +84,20 @@ void GameWindow::GameLoop()
         ball.move(speed);
         paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
 
-        if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0) // hor col
+        // wall collision
+        if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0)
         {
             speed.x *= -1;
         }
 
-        if (ball.getPosition().y + RADIUS >= WINDOW_HEIGHT || ball.getPosition().y - RADIUS <= 0) // vert col
+        // floor/ceil collision
+        if (ball.getPosition().y + RADIUS >= WINDOW_HEIGHT || ball.getPosition().y - RADIUS <= 0)
+        {
+            speed.y *= -1;
+        }
+
+        // paddle collision IFF ball is travelling down (pos y)
+        if (ball.getGlobalBounds().intersects(paddle.getGlobalBounds()) && speed.y > 0)
         {
             speed.y *= -1;
         }
