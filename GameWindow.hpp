@@ -22,7 +22,7 @@ class GameWindow
         ~GameWindow();
 
         void InitBall();
-        // void InitBricks();
+        void InitBricks();
         void InitPaddle();
 
         void GameLoop();
@@ -36,7 +36,10 @@ class GameWindow
     private:
         sf::RenderWindow window;
         sf::CircleShape ball;
+
         // sf::RectangleShape bricks[ROWS][COLS];
+        BrickObj bricks[ROWS][COLS];
+
         sf::RectangleShape paddle;
 
         sf::Event event;

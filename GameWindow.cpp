@@ -13,7 +13,7 @@ GameWindow::~GameWindow()
 void GameWindow::RunWindow()
 {
     this->InitBall();
-    //this->InitBricks();
+    this->InitBricks();
     this->InitPaddle();
     this->GameLoop();
 }
@@ -29,26 +29,23 @@ void GameWindow::InitBall()
     speed.y = Y_SPEED;
 }
 
-/*
+
 void GameWindow::InitBricks()
 {
-    sf::Vector2f brickSize;
-    brickSize.x = (WINDOW_WIDTH / COLS);
-    brickSize.y = (20.f);
+    //  rewrite with BrickObj
 
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
         {
-            bricks[i][j].setSize(brickSize);
-            bricks[i][j].setFillColor(sf::Color::Red);
-            bricks[i][j].setOutlineColor(sf::Color::White);
-            bricks[i][j].setOutlineThickness(3.f);
-            bricks[i][j].setPosition((j * brickSize.x), ((i * brickSize.y) + 3.f));
+            sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f);
+            bricks[i][j].setPosition(brickPos));
+            bricks[i][j].setVisibility(true);
         }
     }
+
 }
-*/
+
 
 void GameWindow::InitPaddle()
 {
@@ -113,7 +110,7 @@ void GameWindow::Draw()
     window.draw(ball);
     window.draw(paddle);
 
-    /*
+    /* TODO rewrite with BrickObj
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
