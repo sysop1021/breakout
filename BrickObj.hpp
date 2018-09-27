@@ -13,7 +13,6 @@ class BrickObj
         bool checkVisibility();
         void setVisibility(bool vis);
 
-        sf::Vector2f getPos(void);
         void setPos(sf::Vector2f brickPos);
 
     private:

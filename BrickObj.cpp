@@ -33,11 +33,6 @@ BrickObj::~BrickObj()
 
 }
 
-sf::Vector2f BrickObj::getPos(void)
-{
-    return
-}
-
 void BrickObj::setPos(sf::Vector2f brickPos)
 {
     BrickRect.setPosition(brickPos);
@@ -48,7 +43,7 @@ bool BrickObj::checkVisibility()
     return isVisible;
 }
 
-void BrickObj::setVisibility()
+void BrickObj::setVisibility(bool vis)
 {
-    isVisible = !isVisible;
+    isVisible = vis;
 }
