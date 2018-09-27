@@ -13,7 +13,7 @@ GameWindow::~GameWindow()
 void GameWindow::RunWindow()
 {
     this->InitBall();
-    this->InitBricks();
+    //this->InitBricks();
     this->InitPaddle();
     this->GameLoop();
 }
@@ -29,6 +29,7 @@ void GameWindow::InitBall()
     speed.y = Y_SPEED;
 }
 
+/*
 void GameWindow::InitBricks()
 {
     sf::Vector2f brickSize;
@@ -47,6 +48,7 @@ void GameWindow::InitBricks()
         }
     }
 }
+*/
 
 void GameWindow::InitPaddle()
 {
@@ -96,8 +98,6 @@ void GameWindow::GameLoop()
         {
             speed.y *= -1;
         }
-
-        //TODO: implement ball collision with bricks
     }
 }
 
@@ -113,6 +113,7 @@ void GameWindow::Draw()
     window.draw(ball);
     window.draw(paddle);
 
+    /*
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
@@ -120,6 +121,7 @@ void GameWindow::Draw()
             window.draw(bricks[i][j]);
         }
     }
+    */
 }
 
 void GameWindow::BeginDraw()

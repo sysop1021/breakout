@@ -13,6 +13,7 @@
 #define ROWS 5
 
 #include <SFML/Graphics.hpp>
+#include "BrickObj.hpp"
 
 class GameWindow
 {
@@ -21,7 +22,7 @@ class GameWindow
         ~GameWindow();
 
         void InitBall();
-        void InitBricks();
+        // void InitBricks();
         void InitPaddle();
 
         void GameLoop();
@@ -35,7 +36,7 @@ class GameWindow
     private:
         sf::RenderWindow window;
         sf::CircleShape ball;
-        sf::RectangleShape bricks[ROWS][COLS];
+        // sf::RectangleShape bricks[ROWS][COLS];
         sf::RectangleShape paddle;
 
         sf::Event event;
