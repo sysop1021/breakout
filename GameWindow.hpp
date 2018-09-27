@@ -27,7 +27,6 @@ class GameWindow
         sf::RenderWindow window;
         sf::CircleShape ball;
 
-        // sf::RectangleShape bricks[ROWS][COLS];
         BrickObj bricks[ROWS][COLS];
 
         sf::RectangleShape paddle;
