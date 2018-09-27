@@ -2,6 +2,7 @@
 #define BRICK_OBJ
 
 #include <SFML/Graphics.hpp>
+#include "Globals.hpp"
 
 class BrickObj
 {

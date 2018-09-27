@@ -32,7 +32,7 @@ void GameWindow::InitBall()
 
 void GameWindow::InitBricks()
 {
-    //  rewrite with BrickObj
+    //  TODO fix this
 
     for (int i = 0; i < ROWS; i++)
     {
