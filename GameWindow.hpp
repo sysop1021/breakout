@@ -1,6 +1,7 @@
 #ifndef GAME_WINDOW_HPP
 #define GAME_WINDOW_HPP
 
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "Globals.hpp"
 #include "BrickObj.hpp"
@@ -11,6 +12,7 @@ class GameWindow
         GameWindow();
         ~GameWindow();
 
+        void InitText();
         void InitBall();
         void InitBricks();
         void InitPaddle();
@@ -36,6 +38,10 @@ class GameWindow
 
         int paddlePosX = WINDOW_WIDTH / 2;
         int lives = MAX_LIVES;
+
+        sf::Font font;
+        sf::Text lives;
+        std::string livesStr;
 };
 
 #endif

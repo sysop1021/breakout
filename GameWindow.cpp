@@ -18,6 +18,15 @@ void GameWindow::RunWindow()
     this->GameLoop();
 }
 
+void GameWindow::InitText()
+{
+    font.loadFromFile("Lato-Regular.ttf");
+    lives.setFont(font);
+
+    livesStr = std::to_string(MAX_LIVES);
+    lives.setString("Lives: " + livesStr);
+}
+
 void GameWindow::InitBall()
 {
     ball.setRadius(RADIUS);
