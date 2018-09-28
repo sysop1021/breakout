@@ -32,7 +32,6 @@ void GameWindow::InitBall()
 
 void GameWindow::InitBricks()
 {
-    //  TODO fix this
     sf::Vector2f brickSize;
     brickSize.x = (WINDOW_WIDTH / COLS);
     brickSize.y = (20.f);
@@ -98,6 +97,19 @@ void GameWindow::GameLoop()
         {
             speed.y *= -1;
         }
+
+        // collision detection with bricks
+        for (int i = 0; i < ROWS; i++)
+        {
+            for (int j = 0; j < COLS; j++)
+            {
+                if (ball.getGlobalBounds().intersects(bricks[i][j].getBrickGB()) && bricks[i][j].checkVisibility() && speed.y < 0)
+                {
+                    bricks[i][j].setVisibility(false);
+                    speed.y *= -1;
+                }
+            }
+        }
     }
 }
 
@@ -113,12 +125,14 @@ void GameWindow::Draw()
     window.draw(ball);
     window.draw(paddle);
 
-    // TODO rewrite with BrickObj
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
         {
-            window.draw(bricks[i][j].getBrickRect());
+            if(bricks[i][j].checkVisibility())
+            {
+                window.draw(bricks[i][j].getBrickRect());
+            }
         }
     }
 

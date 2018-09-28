@@ -7,8 +7,7 @@
 class BrickObj
 {
     public:
-        BrickObj(); //default ctor - pos = (0,0) and not visible
-        //BrickObj(sf::Vector2f brickPos);
+        BrickObj(); //default ctor
         ~BrickObj(); // dtor
 
         bool checkVisibility();
@@ -16,6 +15,7 @@ class BrickObj
 
         void setPos(sf::Vector2f brickPos);
         sf::RectangleShape getBrickRect();
+        sf::FloatRect getBrickGB();
 
     private:
         sf::RectangleShape BrickRect;

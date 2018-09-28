@@ -19,6 +19,11 @@ BrickObj::~BrickObj()
 
 }
 
+sf::FloatRect BrickObj::getBrickGB()
+{
+    return BrickRect.getGlobalBounds();
+}
+
 sf::RectangleShape BrickObj::getBrickRect()
 {
     return BrickRect;
