@@ -3,6 +3,7 @@
 GameWindow::GameWindow()
 {
     window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "SUPER Breakout!", sf::Style::Default);
+    std::cout << "lives: " << lives << std::endl; // TODO get rid of this later - testing porpoises
 }
 
 GameWindow::~GameWindow()
@@ -16,15 +17,6 @@ void GameWindow::RunWindow()
     this->InitBricks();
     this->InitPaddle();
     this->GameLoop();
-}
-
-void GameWindow::InitText()
-{
-    font.loadFromFile("Lato-Regular.ttf");
-    lives.setFont(font);
-
-    livesStr = std::to_string(MAX_LIVES);
-    lives.setString("Lives: " + livesStr);
 }
 
 void GameWindow::InitBall()
@@ -105,6 +97,7 @@ void GameWindow::GameLoop()
         if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
         {
             lives--;
+            std::cout << "lives: " << lives << std::endl;
             ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
         }
 
