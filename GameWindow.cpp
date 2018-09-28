@@ -38,8 +38,8 @@ void GameWindow::InitBricks()
     {
         for (int j = 0; j < COLS; j++)
         {
-            sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f);
-            bricks[i][j].setPosition(brickPos));
+            // sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f);
+            bricks[i][j].setPos(brickPos));
             bricks[i][j].setVisibility(true);
         }
     }
@@ -110,7 +110,7 @@ void GameWindow::Draw()
     window.draw(ball);
     window.draw(paddle);
 
-    /* TODO rewrite with BrickObj
+    // TODO rewrite with BrickObj
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
@@ -118,7 +118,7 @@ void GameWindow::Draw()
             window.draw(bricks[i][j]);
         }
     }
-    */
+    
 }
 
 void GameWindow::BeginDraw()
