@@ -97,7 +97,7 @@ void GameWindow::GameLoop()
         if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
         {
             lives--;
-            std::cout << "lives: " << lives << std::endl;
+            std::cout << "lives: " << lives << std::endl; // TODO get rid of this
             ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
         }
 
