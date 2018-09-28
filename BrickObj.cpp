@@ -14,7 +14,7 @@ BrickObj::BrickObj()
     isVisible = false;
 }
 
-BrickObj::BrickObj(sf::Vector2f brickPos)
+/*BrickObj::BrickObj(sf::Vector2f brickPos)
 {
     sf::Vector2f brickSize;
     brickSize.x = (WINDOW_WIDTH / COLS);
@@ -26,7 +26,7 @@ BrickObj::BrickObj(sf::Vector2f brickPos)
     BrickRect.setOutlineThickness(3.f);
     BrickRect.setPosition(brickPos);
     isVisible = true;
-}
+}*/
 
 BrickObj::~BrickObj()
 {
