@@ -33,13 +33,16 @@ void GameWindow::InitBall()
 void GameWindow::InitBricks()
 {
     //  TODO fix this
+    sf::Vector2f brickSize;
+    brickSize.x = (WINDOW_WIDTH / COLS);
+    brickSize.y = (20.f);
 
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)
         {
-            // sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f);
-            bricks[i][j].setPos(brickPos));
+            sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f));
+            bricks[i][j].setPos(brickPos);
             bricks[i][j].setVisibility(true);
         }
     }
@@ -115,10 +118,10 @@ void GameWindow::Draw()
     {
         for (int j = 0; j < COLS; j++)
         {
-            window.draw(bricks[i][j]);
+            window.draw(bricks[i][j].getBrickRect());
         }
     }
-    
+
 }
 
 void GameWindow::BeginDraw()

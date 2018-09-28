@@ -15,6 +15,7 @@ class BrickObj
         void setVisibility(bool vis);
 
         void setPos(sf::Vector2f brickPos);
+        sf::RectangleShape getBrickRect();
 
     private:
         sf::RectangleShape BrickRect;
