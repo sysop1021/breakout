@@ -12,4 +12,6 @@
 #define COLS 10
 #define ROWS 5
 
+#define MAX_LIVES 3
+
 #endif // GLOBALS

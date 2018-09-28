@@ -40,7 +40,7 @@ void GameWindow::InitBricks()
     {
         for (int j = 0; j < COLS; j++)
         {
-            sf::Vector2f brickPos((j * brickSize.x), ((i * brickSize.y) + 3.f));
+            sf::Vector2f brickPos((j * brickSize.x) + 3.f, (i * brickSize.y) + 3.f);
             bricks[i][j].setPos(brickPos);
             bricks[i][j].setVisibility(true);
         }
@@ -86,10 +86,17 @@ void GameWindow::GameLoop()
             speed.x *= -1;
         }
 
-        // floor/ceil collision
-        if (ball.getPosition().y + RADIUS >= WINDOW_HEIGHT || ball.getPosition().y - RADIUS <= 0)
+        //ceil collision
+        if (ball.getPosition().y - RADIUS <= 0)
         {
             speed.y *= -1;
+        }
+
+        // floor collision
+        if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
+        {
+            lives--;
+            ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
         }
 
         // paddle collision IFF ball is travelling down (pos y)

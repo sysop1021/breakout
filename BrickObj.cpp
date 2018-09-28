@@ -3,8 +3,10 @@
 BrickObj::BrickObj()
 {
     sf::Vector2f brickSize;
-    brickSize.x = (WINDOW_WIDTH / COLS);
-    brickSize.y = (20.f);
+
+    // size minus six in each dimension to account for 3px border
+    brickSize.x = ((WINDOW_WIDTH / COLS) - 6.f);
+    brickSize.y = (20.f - 6.f);
 
     BrickRect.setSize(brickSize);
     BrickRect.setFillColor(sf::Color::Red);
