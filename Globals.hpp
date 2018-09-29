@@ -14,4 +14,4 @@
 
 #define MAX_LIVES 3
 
-#endif // GLOBALS
+#endif

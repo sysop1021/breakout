@@ -1,7 +1,7 @@
 #ifndef GAME_WINDOW_HPP
 #define GAME_WINDOW_HPP
 
-#include <iostream>
+#include <iostream> // TODO get rid of this
 #include <SFML/Graphics.hpp>
 #include "Globals.hpp"
 #include "BrickObj.hpp"
