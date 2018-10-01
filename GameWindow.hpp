@@ -36,7 +36,8 @@ class GameWindow
         sf::Vector2f speed;
 
         int paddlePosX = WINDOW_WIDTH / 2;
-        int lives = MAX_LIVES;
+        int numLives = MAX_LIVES;
+        int numBricks = COLS * ROWS;
 };
 
 #endif
