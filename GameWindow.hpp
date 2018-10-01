@@ -1,7 +1,6 @@
 #ifndef GAME_WINDOW_HPP
 #define GAME_WINDOW_HPP
 
-#include <iostream> // TODO get rid of this
 #include <SFML/Graphics.hpp>
 #include "Globals.hpp"
 #include "BrickObj.hpp"
@@ -15,6 +14,7 @@ class GameWindow
         void InitBall();
         void InitBricks();
         void InitPaddle();
+        void InitScoreboard();
 
         void GameLoop();
         void RunWindow();
@@ -28,6 +28,9 @@ class GameWindow
         sf::RenderWindow window;
         sf::CircleShape ball;
 
+        sf::Font font;
+        sf::Text score;
+
         BrickObj bricks[ROWS][COLS];
 
         sf::RectangleShape paddle;
@@ -38,6 +41,8 @@ class GameWindow
         int paddlePosX = WINDOW_WIDTH / 2;
         int numLives = MAX_LIVES;
         int numBricks = COLS * ROWS;
+        bool gameOverBad;
+        bool gameOverGood;
 };
 
 #endif

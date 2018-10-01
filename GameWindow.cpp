@@ -3,7 +3,6 @@
 GameWindow::GameWindow()
 {
     window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "SUPER Breakout!", sf::Style::Default);
-    std::cout << "lives: " << numLives << std::endl; // TODO get rid of this later - testing porpoises
 }
 
 GameWindow::~GameWindow()
@@ -16,7 +15,17 @@ void GameWindow::RunWindow()
     this->InitBall();
     this->InitBricks();
     this->InitPaddle();
+    this->InitScoreboard();
     this->GameLoop();
+}
+
+void GameWindow::InitScoreboard()
+{
+    font.loadFromFile("Lato-Regular.ttf");
+
+    score.setFont(font);
+    score.setFillColor(sf::Color::Black);
+    score.setString("Lives: " + std::to_string(numLives));
 }
 
 void GameWindow::InitBall()
@@ -41,7 +50,7 @@ void GameWindow::InitBricks()
     {
         for (int j = 0; j < COLS; j++)
         {
-            sf::Vector2f brickPos((j * brickSize.x) + 3.f, (i * brickSize.y) + 3.f);
+            sf::Vector2f brickPos((j * brickSize.x) + 3.f, (i * brickSize.y) + 3.f + (WINDOW_HEIGHT * 0.05f));
             bricks[i][j].setPos(brickPos);
             bricks[i][j].setVisibility(true);
         }
@@ -76,9 +85,22 @@ void GameWindow::GameLoop()
                 paddlePosX = sf::Mouse::getPosition(window).x;
             }
         }
-        if (numLives > 0 && numBricks > 0)
+
+        if (!gameOverBad && !gameOverGood)
         {
-            //////////////////////////////////////////////////////
+            if (numLives == 0)
+            {
+                score.setString("GAME OVER :(");
+
+                gameOverBad = true;
+            }
+
+            if (numBricks == 0)
+            {
+                score.setString("LEVEL CLEAR!");
+                gameOverGood = true;
+            }
+
             this->RenderScene();
             ball.move(speed);
             paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
@@ -99,7 +121,7 @@ void GameWindow::GameLoop()
             if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
             {
                 numLives--;
-                std::cout << "lives: " << numLives << std::endl; // TODO get rid of this
+                score.setString("Lives: " + std::to_string(numLives));
                 ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             }
 
@@ -123,7 +145,6 @@ void GameWindow::GameLoop()
                 }
             }
         }
-        //////////////////////////////////////////////
     }
 }
 
@@ -138,6 +159,7 @@ void GameWindow::Draw()
 {
     window.draw(ball);
     window.draw(paddle);
+    window.draw(score);
 
     for (int i = 0; i < ROWS; i++)
     {
