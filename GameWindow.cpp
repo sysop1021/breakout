@@ -3,7 +3,7 @@
 GameWindow::GameWindow()
 {
     window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "SUPER Breakout!", sf::Style::Default);
-    std::cout << "lives: " << lives << std::endl; // TODO get rid of this later - testing porpoises
+    std::cout << "lives: " << numLives << std::endl; // TODO get rid of this later - testing porpoises
 }
 
 GameWindow::~GameWindow()
@@ -76,49 +76,54 @@ void GameWindow::GameLoop()
                 paddlePosX = sf::Mouse::getPosition(window).x;
             }
         }
-
-        this->RenderScene();
-        ball.move(speed);
-        paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
-
-        // wall collision
-        if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0)
+        if (numLives > 0 && numBricks > 0)
         {
-            speed.x *= -1;
-        }
+            //////////////////////////////////////////////////////
+            this->RenderScene();
+            ball.move(speed);
+            paddle.setPosition(paddlePosX, WINDOW_HEIGHT * 0.85);
 
-        //ceil collision
-        if (ball.getPosition().y - RADIUS <= 0)
-        {
-            speed.y *= -1;
-        }
-
-        // floor collision
-        if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
-        {
-            lives--;
-            std::cout << "lives: " << lives << std::endl; // TODO get rid of this
-            ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-        }
-
-        // paddle collision IFF ball is travelling down (pos y)
-        if (ball.getGlobalBounds().intersects(paddle.getGlobalBounds()) && speed.y > 0)
-        {
-            speed.y *= -1;
-        }
-
-        // collision detection with bricks
-        for (int i = 0; i < ROWS; i++)
-        {
-            for (int j = 0; j < COLS; j++)
+            // wall collision
+            if (ball.getPosition().x + RADIUS >= WINDOW_WIDTH || ball.getPosition().x - RADIUS <= 0)
             {
-                if (ball.getGlobalBounds().intersects(bricks[i][j].getBrickGB()) && bricks[i][j].checkVisibility() && speed.y < 0)
+                speed.x *= -1;
+            }
+
+            //ceil collision
+            if (ball.getPosition().y - RADIUS <= 0)
+            {
+                speed.y *= -1;
+            }
+
+            // floor collision
+            if(ball.getPosition().y + RADIUS >= WINDOW_HEIGHT)
+            {
+                numLives--;
+                std::cout << "lives: " << numLives << std::endl; // TODO get rid of this
+                ball.setPosition(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+            }
+
+            // paddle collision IFF ball is travelling down (pos y)
+            if (ball.getGlobalBounds().intersects(paddle.getGlobalBounds()) && speed.y > 0)
+            {
+                speed.y *= -1;
+            }
+
+            // collision detection with bricks
+            for (int i = 0; i < ROWS; i++)
+            {
+                for (int j = 0; j < COLS; j++)
                 {
-                    bricks[i][j].setVisibility(false);
-                    speed.y *= -1;
+                    if (ball.getGlobalBounds().intersects(bricks[i][j].getBrickGB()) && bricks[i][j].checkVisibility() && speed.y < 0)
+                    {
+                        bricks[i][j].setVisibility(false);
+                        speed.y *= -1;
+                        numBricks--;
+                    }
                 }
             }
         }
+        //////////////////////////////////////////////
     }
 }
 
