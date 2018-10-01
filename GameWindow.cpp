@@ -2,7 +2,7 @@
 
 GameWindow::GameWindow()
 {
-    window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "SUPER Breakout!", sf::Style::Default);
+    window.create({WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_BITS}, "PRETTY OKAY Breakout!", sf::Style::Default);
 }
 
 GameWindow::~GameWindow()
